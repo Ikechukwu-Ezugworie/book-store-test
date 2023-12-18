@@ -11,10 +11,24 @@ spring:
 
 
 # JPA (Java Persistence API) Configuration
-jpa:
-  hibernate:
-    ddl-auto: update # You can also use "create" to create tables at startup
-  show-sql: true
-  properties:
+  jpa:
     hibernate:
-      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update # You can also use "create" to create tables at startup
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+
+logging:
+  level:
+    root: debug

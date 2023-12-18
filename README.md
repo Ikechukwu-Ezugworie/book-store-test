@@ -25,13 +25,11 @@ Start your application with the following command - here with the profile `produ
 ```
 java -Dspring.profiles.active=production -jar ./target/book-store-0.0.1-SNAPSHOT.jar
 ```
+# Swagger
 
-If required, a Docker image can be created with the Spring Boot plugin. Add `SPRING_PROFILES_ACTIVE=production` as
-environment variable when running the container.
+* After running the application, the swagger documentation can be found in http://localhost:8080/swagger-ui/index.html#/
 
-```
-mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.interswitch.test/book-store
-```
+---
 
 ## Further readings
 
