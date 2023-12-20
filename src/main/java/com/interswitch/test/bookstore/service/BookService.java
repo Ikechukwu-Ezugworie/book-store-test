@@ -1,6 +1,5 @@
 package com.interswitch.test.bookstore.service;
 
-import com.interswitch.test.bookstore.domain.Book;
 import com.interswitch.test.bookstore.pojo.BookDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +10,9 @@ public interface BookService {
 
     public BookDTO createBook(BookDTO book);
 
-    public List<Book> getBookByTitle(String title);
-
-    public List<Book> getBookByAuthor(String author);
-
-    public List<Book> getBookByYearOfPublication(String yearOfPublication);
-
-    public List<Book> getBookByGenre(String genre);
+    public List<BookDTO> searchBook(
+            Integer limit, Integer offset,
+            String title, String genre,
+            String author, String yearOfPublication
+    );
 }
