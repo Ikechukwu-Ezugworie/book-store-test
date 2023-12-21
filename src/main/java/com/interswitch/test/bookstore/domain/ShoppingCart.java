@@ -2,29 +2,44 @@ package com.interswitch.test.bookstore.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class ShoppingCart {
 
     @Id
-    private Long id;
+    private String id;
 
-    @Column
-    private String listOfBooks;
+    @ManyToMany
+    @JoinTable(
+            name = "shopping_cart_books",
+            joinColumns = @JoinColumn(name = "shopping_cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> listOfBooks = new ArrayList<>();
 
-    public Long getId() {
-        return id;
+    public ShoppingCart() {
     }
 
-    public void setId(final Long id) {
+    public ShoppingCart(String id) {
         this.id = id;
     }
 
-    public String getListOfBooks() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    public List<Book> getListOfBooks() {
         return listOfBooks;
     }
 
-    public void setListOfBooks(final String listOfBooks) {
+    public void setListOfBooks(final List<Book> listOfBooks) {
         this.listOfBooks = listOfBooks;
     }
 
