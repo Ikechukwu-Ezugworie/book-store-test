@@ -1,11 +1,18 @@
 package com.interswitch.test.bookstore.pojo;
 
+import com.interswitch.test.bookstore.enums.Genre;
+import jakarta.validation.constraints.Pattern;
+
 import java.time.LocalDate;
 
 public class BookDTO {
     private String id;
+
+    @Pattern(regexp = "^[a-zA-Z0-9 ]+$")
     private String title;
-    private String genre;
+    private Genre genre;
+
+    @Pattern(regexp = "^[0-9\\-]+$")
     private String isbn;
     private String author;
     private String yearOfPublication;
@@ -29,11 +36,11 @@ public class BookDTO {
         this.title = title;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 

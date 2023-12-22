@@ -36,13 +36,11 @@ public class BookController {
             @ApiResponse(responseCode = "500", description = "internal error - critical!")})
     @GetMapping()
     public ResponseEntity<List<BookDTO>> searchBook(
-            @RequestParam(required = true) @Valid Integer limit,
-            @RequestParam(required = false) @Valid Integer offset,
             @RequestParam(required = false) @Valid String title,
             @RequestParam(required = false) @Valid String genre,
             @RequestParam(required = false) @Valid String author,
             @RequestParam(required = false) @Valid String yearOfPublication
     ) {
-        return ResponseEntity.ok(bookService.searchBook(limit, offset, title, genre, author, yearOfPublication));
+        return ResponseEntity.ok(bookService.searchBook(title, genre, author, yearOfPublication));
     }
 }

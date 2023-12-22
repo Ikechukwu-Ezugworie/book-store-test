@@ -1,4 +1,4 @@
-package com.musala.drones.exception;
+package com.interswitch.test.bookstore.exception;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 

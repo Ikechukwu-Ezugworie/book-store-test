@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface ShoppingCartService {
 
-    public ShoppingCartDTO createShoppingCart();
+    public ShoppingCartDTO createShoppingCart(String userId);
 
     public ShoppingCartDTO getShoppingCartById(String id);
 

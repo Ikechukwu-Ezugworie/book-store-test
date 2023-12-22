@@ -11,7 +11,6 @@ public interface BookService {
     public BookDTO createBook(BookDTO book);
 
     public List<BookDTO> searchBook(
-            Integer limit, Integer offset,
             String title, String genre,
             String author, String yearOfPublication
     );

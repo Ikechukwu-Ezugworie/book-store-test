@@ -2,11 +2,11 @@ package com.interswitch.test.bookstore.serviceImpl;
 
 import com.interswitch.test.bookstore.domain.Book;
 import com.interswitch.test.bookstore.domain.ShoppingCart;
+import com.interswitch.test.bookstore.exception.NotFoundException;
 import com.interswitch.test.bookstore.pojo.ShoppingCartDTO;
 import com.interswitch.test.bookstore.respository.BookRepository;
 import com.interswitch.test.bookstore.respository.ShoppingCartRepository;
 import com.interswitch.test.bookstore.service.ShoppingCartService;
-import com.musala.drones.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +31,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     BookRepository bookRepository;
 
     @Override
-    public ShoppingCartDTO createShoppingCart() {
+    public ShoppingCartDTO createShoppingCart(String userId) {
         logger.info("Creating a new shopping cart");
-        ShoppingCart cart = new ShoppingCart(UUID.randomUUID().toString());
+        ShoppingCart cart = new ShoppingCart(UUID.randomUUID().toString(), userId);
         ShoppingCart createdCart = shoppingCartRepository.save(cart);
         return modelMapper.map(createdCart, ShoppingCartDTO.class);
     }
@@ -48,6 +48,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         });
         return modelMapper.map(cartOptional, ShoppingCartDTO.class);
     }
+
 
     @Override
     public ShoppingCartDTO addBookToShoppingCart(String cartId, List<String> bookIds) {

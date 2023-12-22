@@ -26,17 +26,17 @@ public class ShoppingCartController {
     @Operation(summary = "create a new shopping cart")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "successful"),
             @ApiResponse(responseCode = "500", description = "internal error - critical!")})
-    @PostMapping
-    public ResponseEntity<ShoppingCartDTO> createShoppingCart(){
-        ShoppingCartDTO createdCart = shoppingCartService.createShoppingCart();
+    @PostMapping("{userId}")
+    public ResponseEntity<ShoppingCartDTO> createShoppingCart(@PathVariable @Valid String userId){
+        ShoppingCartDTO createdCart = shoppingCartService.createShoppingCart(userId);
         return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
     }
 
     @Operation(summary = "add a book to a shopping cart")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "successful"),
             @ApiResponse(responseCode = "500", description = "internal error - critical!")})
-    @PutMapping("{id}")
-    public ResponseEntity<ShoppingCartDTO> addBookToShoppingCart(@PathVariable @Valid String id, @RequestBody List<String> bookIds){
+    @PutMapping("{id}/user/{userId}")
+    public ResponseEntity<ShoppingCartDTO> addBookToShoppingCart(@PathVariable @Valid String id, @PathVariable @Valid String userId, @RequestBody List<String> bookIds){
         ShoppingCartDTO updatedCart = shoppingCartService.addBookToShoppingCart(id, bookIds);
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
     }
